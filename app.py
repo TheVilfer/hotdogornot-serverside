@@ -1,7 +1,7 @@
 import base64
 from io import BytesIO
 
-from flask import Flask,request, jsonify, json
+from flask import Flask,request, jsonify, json, make_response
 from PIL import Image
 
 import neuro
@@ -15,13 +15,13 @@ def main():
         result = ''
         buf = BytesIO()
         image = Image.open(request.files['image'])
+        image.save(buf, format='JPEG')
         result = neuro.tn(image=image)
         if result['Prediction'] == 'hot_dog':
             result = 'Хот-Дог'
         else:
             result = 'Не Хот-Дог'
-        image.save(buf, format='JPEG')
-        return jsonify(result=result, img=base64.b64encode(buf.getvalue()).decode('utf-8'))
+        return make_response(jsonify(result=result, img=base64.b64encode(buf.getvalue()).decode('utf-8')), 200)
     else:
         return "You need use POST request"
 
