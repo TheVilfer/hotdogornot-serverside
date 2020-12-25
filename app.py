@@ -12,7 +12,6 @@ app.debug = True
 @app.route('/', methods=['GET', 'POST'])
 def main():
     if request.method == 'POST':
-        result = ''
         buf = BytesIO()
         image = Image.open(request.files['image'])
         image.save(buf, format='JPEG')
@@ -21,7 +20,7 @@ def main():
             result = 'Хот-Дог'
         else:
             result = 'Не Хот-Дог'
-        return make_response(jsonify(result=result, img=base64.b64encode(buf.getvalue()).decode('utf-8')), 200)
+        return make_response(jsonify(result=result, image=base64.b64encode(buf.getvalue()).decode('utf-8')), 200)
     else:
         return "You need use POST request"
 
