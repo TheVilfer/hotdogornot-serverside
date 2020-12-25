@@ -1,1 +1,1 @@
-# isthishotdog-serverside
+# HotDog or Not? Server-side
