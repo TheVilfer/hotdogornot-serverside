@@ -1,1 +1,1 @@
-# <img src="img/logo.svg" width="32" height="32" align="baseline" alt="logo"> HotDog or Not? Server-side
+# <img src="img/logo.svg" width="50" height="50" align="baseline" alt="logo"> HotDog or Not? Server-side
